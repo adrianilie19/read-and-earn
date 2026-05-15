@@ -50,3 +50,8 @@ app-root {
     min-height: 100vh;
     background-color: #faf8f3;
 }
+
+router-outlet + * {
+    min-height: calc(100vh - 120px);
+    display: block;
+}
