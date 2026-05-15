@@ -1,0 +1,71 @@
+<div class="contenedor-auth">
+
+  <div *ngIf="mensajeGuard" class="aviso-guard">
+    🔒 {{ mensajeGuard }}
+  </div>
+
+  <!-- FORMULARIO LOGIN -->
+  <div *ngIf="isLogin" class="caja-auth">
+    <h2>Iniciar Sesión</h2>
+    <p class="subtitulo-auth">Bienvenido de vuelta</p>
+
+    <div *ngIf="loginError" class="error-mensaje">{{ loginError }}</div>
+
+    <form (ngSubmit)="onLogin()" class="formulario-auth">
+      <div class="grupo-input">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" [(ngModel)]="loginEmail" name="loginEmail" placeholder="tu@email.com" required>
+      </div>
+      <div class="grupo-input">
+        <label for="loginPassword">Contraseña</label>
+        <input type="password" id="loginPassword" [(ngModel)]="loginPassword" name="loginPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-auth" [disabled]="loginCargando">
+        {{ loginCargando ? 'Entrando...' : 'Iniciar Sesión' }}
+      </button>
+    </form>
+
+    <div class="divider"></div>
+    <p class="texto-toggle">
+      ¿No tienes cuenta?
+      <a class="link-toggle" (click)="toggleForm()">Regístrate aquí</a>
+    </p>
+  </div>
+
+  <!-- FORMULARIO REGISTRO -->
+  <div *ngIf="!isLogin" class="caja-auth">
+    <h2>Crear Cuenta</h2>
+    <p class="subtitulo-auth">Únete a nuestra comunidad de lectores</p>
+
+    <div *ngIf="registerError" class="error-mensaje">{{ registerError }}</div>
+
+    <form (ngSubmit)="onRegister()" class="formulario-auth">
+      <div class="grupo-input">
+        <label for="registerNombre">Nombre</label>
+        <input type="text" id="registerNombre" [(ngModel)]="registerNombre" name="registerNombre" placeholder="Tu nombre" required>
+      </div>
+      <div class="grupo-input">
+        <label for="registerEmail">Email</label>
+        <input type="email" id="registerEmail" [(ngModel)]="registerEmail" name="registerEmail" placeholder="tu@email.com" required>
+      </div>
+      <div class="grupo-input">
+        <label for="registerPassword">Contraseña</label>
+        <input type="password" id="registerPassword" [(ngModel)]="registerPassword" name="registerPassword" placeholder="••••••••" required>
+      </div>
+      <div class="grupo-input">
+        <label for="registerPasswordConfirm">Confirmar Contraseña</label>
+        <input type="password" id="registerPasswordConfirm" [(ngModel)]="registerPasswordConfirm" name="registerPasswordConfirm" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-auth" [disabled]="registerCargando">
+        {{ registerCargando ? 'Creando cuenta...' : 'Registrarse' }}
+      </button>
+    </form>
+
+    <div class="divider"></div>
+    <p class="texto-toggle">
+      ¿Ya tienes cuenta?
+      <a class="link-toggle" (click)="toggleForm()">Inicia sesión aquí</a>
+    </p>
+  </div>
+
+</div>

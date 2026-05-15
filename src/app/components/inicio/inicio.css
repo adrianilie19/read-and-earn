@@ -1,0 +1,301 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #fbf4ef;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.pagina-inicio {
+    width: 100%;
+    min-height: 900px;
+    padding: 60px 20px;
+    font-family: 'Inter', sans-serif;
+    background-color: #fbf4ef;
+    box-sizing: border-box;
+    margin: auto;
+    font-family: 'Inter', sans-serif;
+}
+
+.seccion-bienvenida {
+    text-align: center;
+    padding: 60px 20px;
+    margin-bottom: 40px;
+}
+
+.seccion-bienvenida h1 {
+    font-family: Inter, sans-serif;
+    font-size: 60px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.seccion-bienvenida p {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.boton-principal {
+    background-color: #634731ff;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    border-radius: 8px;
+    margin-bottom: 60px;
+}
+
+.boton-principal:hover {
+    background-color: #7a462e;
+}
+
+.seccion-beneficios {
+    margin-bottom: 30px;
+}
+
+.seccion-beneficios h2 {
+    font-family: 'DM Serif Text', serif;
+    text-align: center;
+    font-size: 40px;
+    color: #333333ff;
+    margin-bottom: 15px;
+}
+
+.lista-beneficios {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: nowrap;
+}
+
+.tarjeta-beneficio {
+    background-color: #fcf7f3;
+    border-radius: 12px;
+    padding: 30px;
+    width: 23%;
+    text-align: center;
+    box-shadow: 0 2px 6px #0000000d;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    min-width: 260px;
+    border: 1.8px solid #e0d5c7;
+    margin-bottom: 30px;
+}
+
+.tarjeta-beneficio:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 16px #0000001a;
+}
+
+.tarjeta-beneficio h3 {
+    font-weight: 700;
+    font-size: 18px;
+    color: #4a3828;
+    margin-bottom: 12px;
+}
+
+.tarjeta-beneficio p {
+    color: #6b6b75;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.tarjeta-beneficio i {
+    display: inline-block;
+    background-color: #eadbd0;
+    color: #7a462e;
+    font-size: 24px;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    border-radius: 50%;
+    margin-bottom: 18px;
+}
+
+.seccion-funcionamiento {
+    margin-bottom: 60px;
+}
+
+.seccion-funcionamiento h2 {
+    font-family: DMSerifText, Serif;
+    text-align: center;
+    font-size: 32px;
+    color: #333333ff;
+}
+
+.pasos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.paso {
+    background-color: #f6ede6;
+    padding: 30px;
+    text-align: center;
+}
+
+.paso h3 {
+    font-size: 18px;
+    color: #2a1e1a;
+    margin-bottom: 15px;
+}
+
+.paso p {
+    color: #666666ff;
+    font-size: 14px;
+}
+
+.boton-secundario {
+    background-color: #999999ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.boton-secundario:hover {
+    background-color: #777777ff;
+}
+
+.descripcion-seccion {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    font-size: 18px;
+    line-height: 28px;
+    color: #666666ff;
+}
+
+.conjunto-pasos {
+    padding: 120px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.bloque-contenido {
+    background-color: #f6ece7;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    border-radius: 20px;
+}
+
+.encabezado-funcionamiento {
+    text-align: center;
+    padding: 20px;
+}
+
+.encabezado-funcionamiento h2 {
+    font-family: 'DM Serif Text', serif;
+    font-size: 40px;
+    color: #2a1e1a;
+    margin-bottom: 15px;
+}
+
+.encabezado-funcionamiento p {
+    font-size: 18px;
+    color: #666666ff;
+    font-family: 'Inter', sans-serif;
+}
+
+.lista-pasos {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+}
+
+.paso-2 {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    max-width: 700px;
+}
+
+.paso-numero {
+    background-color: #634731ff;
+    color: #ffffff;
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 5px;
+}
+
+.paso-info h3 {
+    font-size: 20px;
+    color: #2a1e1a;
+    margin: 0 0 8px 0;
+}
+
+.paso-info p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666;
+    max-width: 500px;
+}
+
+.seccion-descubrir {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    padding: 0px 20px;
+}
+
+.boton-secundario {
+    background-color: #f0e1d9;
+    color: #634731;
+    padding: 12px 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.boton-secundario:hover {
+    background-color: #e6d2c8;
+}
+
+.bloque-contenido-descubrir {
+    background-color: #634731;
+    width: 100%;
+    max-width: 1200px;
+    padding: 80px 40px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.encabezado-funcionamiento-abajo h2 {
+    font-family: 'DM Serif Text', serif;
+    font-size: 42px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.encabezado-funcionamiento-abajo p {
+    font-size: 18px;
+    color: #f3e8e2;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 40px;
+}

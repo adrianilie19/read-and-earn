@@ -1,0 +1,53 @@
+<div class="body">
+<div class="contenedor-logros">
+
+    <div class="encabezado-logros">
+        <div class="icono-logros">🏆</div>
+        <h1><strong>Logros</strong></h1>
+        <p class="subtitulo-logros" *ngIf="!cargando">
+            {{ totalCompletados }} de {{ logros.length }} logros completados
+        </p>
+    </div>
+
+    <div *ngIf="cargando" class="cargando"><p>Cargando logros...</p></div>
+    <div *ngIf="error" class="error-msg">{{ error }}</div>
+
+    <ng-container *ngIf="!cargando && !error">
+
+        <div class="barra-progreso-global" *ngIf="logros.length > 0">
+            <div class="relleno-progreso-global"
+                 [style.width]="(totalCompletados / logros.length * 100) + '%'">
+            </div>
+        </div>
+
+        <div class="pestanas-filtro">
+            <button class="pestana" [class.activa]="filtro === 'todos'" (click)="setFiltro('todos')">Todos</button>
+            <button class="pestana" [class.activa]="filtro === 'pendientes'" (click)="setFiltro('pendientes')">Pendientes</button>
+            <button class="pestana" [class.activa]="filtro === 'completados'" (click)="setFiltro('completados')">Completados</button>
+        </div>
+
+        <div class="lista-logros">
+            <div class="tarjeta-logro" [class.completado]="logro.completado" *ngFor="let logro of logrosFiltrados">
+                <div class="icono-logro">{{ logro.icono }}</div>
+                <div class="info-logro">
+                    <div class="cabecera-logro">
+                        <h3>{{ logro.titulo }}</h3>
+                        <span class="badge-completado" *ngIf="logro.completado">✓ Completado</span>
+                    </div>
+                    <p class="descripcion-logro">{{ logro.descripcion }}</p>
+                </div>
+                <div class="exp-logro">
+                    <span class="numero-exp">+{{ logro.exp }}</span>
+                    <span class="texto-exp">EXP</span>
+                </div>
+            </div>
+
+            <div *ngIf="logrosFiltrados.length === 0" class="sin-logros">
+                <p>No hay logros en esta categoría todavía.</p>
+            </div>
+        </div>
+
+    </ng-container>
+
+</div>
+</div>

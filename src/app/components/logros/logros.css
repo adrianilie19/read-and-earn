@@ -1,0 +1,195 @@
+.body { background-color: #faf4ef; }
+
+.contenedor-logros {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px 80px 20px;
+    min-height: 35%;
+}
+
+.encabezado-logros {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.icono-logros { font-size: 48px; margin-bottom: 10px; }
+
+.encabezado-logros h1 {
+    font-size: 36px;
+    color: #333333ff;
+    font-family: 'DMSerifText', serif;
+    margin: 0 0 6px 0;
+}
+
+.subtitulo-logros {
+    font-size: 14px;
+    color: #999999ff;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+.barra-progreso-global {
+    width: 100%;
+    height: 8px;
+    background-color: #e0d5c7;
+    border-radius: 30px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.relleno-progreso-global {
+    height: 100%;
+    background-color: #634731;
+    border-radius: 30px;
+    transition: width 0.6s ease;
+}
+
+.pestanas-filtro {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.pestana {
+    padding: 8px 22px;
+    border: 1.5px solid #e0d5c7;
+    border-radius: 20px;
+    background-color: transparent;
+    color: #666666;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.pestana:hover { background-color: #f0e1d9; }
+
+.pestana.activa {
+    background-color: #634731;
+    color: #ffffff;
+    border-color: #634731;
+    font-weight: 600;
+}
+
+.lista-logros {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tarjeta-logro {
+    background-color: #ffffff;
+    border: 2px solid #e3d4cc;
+    border-radius: 14px;
+    padding: 22px 26px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-logro:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.tarjeta-logro.completado { background-color: #faf4ef; }
+
+.icono-logro {
+    font-size: 32px;
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0e1d9;
+    border-radius: 50%;
+}
+
+.info-logro { flex: 1; }
+
+.cabecera-logro {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.info-logro h3 {
+    font-size: 15px;
+    color: #333333ff;
+    margin: 0;
+    font-family: 'DMSerifText', serif;
+    font-weight: bold;
+}
+
+.badge-completado {
+    font-size: 11px;
+    background-color: #634731;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.descripcion-logro {
+    font-size: 12px;
+    color: #999999ff;
+    margin: 0 0 8px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.barra-progreso-logro {
+    width: 100%;
+    height: 5px;
+    background-color: #e0d5c7;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.relleno-progreso-logro {
+    height: 100%;
+    background-color: #634731;
+    border-radius: 30px;
+    transition: width 0.6s ease;
+}
+
+.texto-progreso {
+    font-size: 11px;
+    color: #b0a090;
+    font-family: 'Inter', sans-serif;
+}
+
+.exp-logro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.numero-exp {
+    font-size: 20px;
+    color: #634731;
+    font-weight: bold;
+    font-family: 'Inter', sans-serif;
+}
+
+.texto-exp {
+    font-size: 12px;
+    color: #999999ff;
+    font-family: 'Inter', sans-serif;
+}
+
+.sin-logros {
+    text-align: center;
+    padding: 40px;
+    font-size: 15px;
+    color: #999999ff;
+    font-family: 'Inter', sans-serif;
+}

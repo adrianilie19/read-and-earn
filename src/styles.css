@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'DMSerifText-Regular';
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'DMSerifText-Regular';
+    src: url(../public/fonts/DMSerifText/DMSerifText-Regular.ttf) format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/read-n-earn/public/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/read-n-earn/public/fonts/Inter/Inter-VariableFont_opsz,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #faf8f3;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #faf8f3;
+}
+
+app-root {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #faf8f3;
+}

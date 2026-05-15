@@ -1,0 +1,16 @@
+:host {
+  display: block;
+  width: 100%;
+  background-color: #faf8f3;
+}
+
+app-header {
+  display: block;
+  width: 100%;
+}
+
+app-biblioteca {
+  display: block;
+  width: 100%;
+  background-color: #faf8f3;
+}

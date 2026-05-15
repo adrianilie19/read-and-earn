@@ -1,0 +1,69 @@
+<div class="body">
+    <div class="contenedor-descubrir">
+
+        <div class="encabezado-descubrir">
+            <h1><strong>Descubrir</strong></h1>
+            <div class="buscador-contenedor">
+                <input
+                  type="text"
+                  class="busqueda-libro"
+                  placeholder="Buscar libros..."
+                  [(ngModel)]="terminoBusqueda"
+                  (keyup.enter)="buscar()"
+                >
+                <button class="btn-buscar" (click)="buscar()">Buscar</button>
+            </div>
+        </div>
+
+        <!-- Pantalla de carga más visual -->
+        <div *ngIf="cargando" class="cargando">
+            <div class="spinner"></div>
+            <p>Cargando libros...</p>
+            <p class="cargando-subtexto">Esto puede tardar unos segundos</p>
+        </div>
+
+        <div *ngIf="error" class="error">{{ error }}</div>
+
+        <div class="grid-libros" *ngIf="!cargando && libros.length > 0">
+            <div class="tarjeta-libro" *ngFor="let libro of libros">
+                <div class="imagen-libro">
+                    <!-- loading="lazy" hace que las imágenes carguen solo cuando son visibles -->
+                    <img
+                      *ngIf="libro.cover_image"
+                      [src]="libro.cover_image"
+                      [alt]="libro.title"
+                      class="portada-libro"
+                      loading="lazy"
+                    >
+                    <div *ngIf="!libro.cover_image" class="sin-imagen">📖</div>
+                </div>
+                <div class="info-libro">
+                    <h3>{{ libro.title }}</h3>
+                    <p class="autor-libro">{{ libro.authors[0]?.name || 'Autor desconocido' }}</p>
+                    <p class="descargas-libro" *ngIf="libro.download_count">
+                        {{ libro.download_count | number }} descargas
+                    </p>
+                    <button
+                        class="btn-accion"
+                        [class.btn-agregado]="yaAgregado(libro)"
+                        [disabled]="yaAgregado(libro)"
+                        (click)="agregarABiblioteca(libro)"
+                    >
+                        {{ yaAgregado(libro) ? '✓ Agregado' : '+ Agregar' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!cargando && libros.length === 0" class="sin-libros">
+            <p>No se encontraron libros. Prueba con otro término.</p>
+        </div>
+
+        <div class="contenedor-paginacion" *ngIf="!cargando && libros.length > 0">
+            <button class="btn-paginacion" (click)="paginaAnterior()" [disabled]="paginaActual === 1">&lt;</button>
+            <span class="pagina-actual">Página {{ paginaActual }}</span>
+            <button class="btn-paginacion" (click)="paginaSiguiente()">&gt;</button>
+        </div>
+
+    </div>
+</div>

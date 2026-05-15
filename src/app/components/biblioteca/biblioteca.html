@@ -1,0 +1,68 @@
+<div class="body">
+    <div class="contenedor-biblioteca">
+        <div class="encabezado-biblioteca">
+            <div>
+                <h1>Tu biblioteca</h1>
+                <p class="subtitulo-biblioteca" *ngIf="libros.length > 0">
+                    {{ libros.length }} libro{{ libros.length !== 1 ? 's' : '' }} en tu colección
+                </p>
+            </div>
+            <input
+              type="text"
+              class="busqueda-libro"
+              placeholder="Buscar en tus libros..."
+              [(ngModel)]="terminoBusqueda"
+              (input)="filtrarLibros()"
+            >
+        </div>
+
+        <div *ngIf="cargando" class="cargando"><p>Cargando biblioteca...</p></div>
+        <div *ngIf="error" class="error">{{ error }}</div>
+
+        <div class="pestanas-estado" *ngIf="!cargando && libros.length > 0">
+            <button class="pestana" [class.activa]="filtroEstado === 'todos'" (click)="setFiltroEstado('todos')">Todos ({{ libros.length }})</button>
+            <button class="pestana" [class.activa]="filtroEstado === 'Por comenzar'" (click)="setFiltroEstado('Por comenzar')">Por comenzar</button>
+            <button class="pestana" [class.activa]="filtroEstado === 'En progreso'" (click)="setFiltroEstado('En progreso')">En progreso</button>
+            <button class="pestana" [class.activa]="filtroEstado === 'Completado'" (click)="setFiltroEstado('Completado')">Completados</button>
+        </div>
+
+        <div class="grid-libros" *ngIf="!cargando && librosFiltrados.length > 0">
+            <div class="tarjeta-libro" *ngFor="let libro of librosFiltrados">
+                <div class="imagen-libro">
+                    <img *ngIf="libro.portada_url" [src]="libro.portada_url" [alt]="libro.titulo" class="portada-libro">
+                    <div *ngIf="!libro.portada_url" class="sin-imagen">📖</div>
+                </div>
+                <div class="info-libro">
+                    <h3>{{ libro.titulo }}</h3>
+                    <p class="autor-libro">{{ libro.autor || 'Autor desconocido' }}</p>
+                    <div class="estado-libro">
+                        <span class="etiqueta-estado"
+                          [class.estado-por-comenzar]="libro.estado === 'Por comenzar'"
+                          [class.estado-en-progreso]="libro.estado === 'En progreso'"
+                          [class.estado-completado]="libro.estado === 'Completado'">
+                            {{ libro.estado }}
+                        </span>
+                        <span class="porcentaje">{{ libro.progreso }}%</span>
+                    </div>
+                    <div class="barra-progreso">
+                        <div class="relleno-progreso" [style.width]="libro.progreso + '%'"></div>
+                    </div>
+                    <button class="btn-accion" (click)="continuarLeyendo(libro)">
+                        {{ libro.progreso > 0 ? 'Continuar leyendo' : 'Comenzar' }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!cargando && !error && libros.length === 0" class="sin-libros">
+            <div class="sin-libros-icono">📚</div>
+            <h3>Tu biblioteca está vacía</h3>
+            <p>Descubre libros y empieza a construir tu colección.</p>
+            <a routerLink="/descubrir"><button class="btn-descubrir">Ir a Descubrir</button></a>
+        </div>
+
+        <div *ngIf="!cargando && libros.length > 0 && librosFiltrados.length === 0" class="sin-libros">
+            <p>No se encontraron libros con ese término.</p>
+        </div>
+    </div>
+</div>

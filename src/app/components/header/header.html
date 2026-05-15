@@ -1,0 +1,62 @@
+<header class="header">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-3 d-flex justify-content-start">
+                <a routerLink="/" class="logo-link">
+                    <span class="logo-texto">Read & Earn</span>
+                </a>
+            </div>
+
+            <div class="col-md-6 d-flex justify-content-center nav-desktop">
+                <nav class="nav gap-4">
+                    <a routerLink="/biblioteca" routerLinkActive="activo" class="nav-link boton-nav">Biblioteca</a>
+                    <a routerLink="/descubrir" routerLinkActive="activo" class="nav-link boton-nav">Descubrir</a>
+                    <a routerLink="/logros" routerLinkActive="activo" class="nav-link boton-nav">Logros</a>
+                    <a routerLink="/premios" routerLinkActive="activo" class="nav-link boton-nav">Premios</a>
+                </nav>
+            </div>
+
+            <div class="col-md-3 d-flex justify-content-end align-items-center gap-header">
+
+                <!-- Si el usuario está logueado mostramos su info -->
+                <ng-container *ngIf="authService.isLoggedIn()">
+                    <div class="info-usuario">
+                        <span class="nombre-usuario">{{ authService.getCurrentUser()?.nombre }}</span>
+                        <span class="exp-usuario">
+                            Nv.{{ authService.getCurrentUser()?.nivel }} · {{ authService.getCurrentUser()?.exp }} EXP
+                        </span>
+                    </div>
+                    <button class="btn-logout" (click)="logout()">Cerrar sesión</button>
+                </ng-container>
+
+                <!-- Si no está logueado mostramos el botón de perfil -->
+                <ng-container *ngIf="!authService.isLoggedIn()">
+                    <a routerLink="/login" class="nav-link boton-nav boton-perfil">
+                        <i class="bi bi-person"></i> Perfil
+                    </a>
+                </ng-container>
+
+                <button class="btn-menu-movil" (click)="toggleMenu()">
+                    <i class="bi" [class.bi-list]="!menuAbierto" [class.bi-x-lg]="menuAbierto"></i>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Menú móvil -->
+        <nav class="nav-movil" [class.abierto]="menuAbierto">
+            <a routerLink="/biblioteca" class="nav-link boton-nav" (click)="menuAbierto=false">Biblioteca</a>
+            <a routerLink="/descubrir" class="nav-link boton-nav" (click)="menuAbierto=false">Descubrir</a>
+            <a routerLink="/logros" class="nav-link boton-nav" (click)="menuAbierto=false">Logros</a>
+            <a routerLink="/premios" class="nav-link boton-nav" (click)="menuAbierto=false">Premios</a>
+            <ng-container *ngIf="authService.isLoggedIn()">
+                <button class="btn-logout" (click)="logout(); menuAbierto=false">Cerrar sesión</button>
+            </ng-container>
+            <ng-container *ngIf="!authService.isLoggedIn()">
+                <a routerLink="/login" class="nav-link boton-nav" (click)="menuAbierto=false">Perfil</a>
+            </ng-container>
+        </nav>
+
+    </div>
+</header>
