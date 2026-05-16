@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LibrosService, Libro } from '../../core/service/LibrosService/libros-services.service';
@@ -29,7 +29,10 @@ export class DescubrirComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.cargarIdsYLuegoPagina();
+    this.cargarLibros();
+
+    const bib = JSON.parse(localStorage.getItem('biblioteca') || '[]');
+    this.idsAgregados = bib.map((l: any) => l.id || l.gutendex_id);
   }
 
   cargarIdsYLuegoPagina() {

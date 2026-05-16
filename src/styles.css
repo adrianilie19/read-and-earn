@@ -55,3 +55,15 @@ router-outlet + * {
     min-height: calc(100vh - 120px);
     display: block;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    background-color: #faf4ef;
+}
+
+router-outlet + * {
+    min-height: calc(100vh - 60px);
+    display: block;
+    background-color: #faf4ef;
+}
