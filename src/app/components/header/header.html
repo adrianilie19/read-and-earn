@@ -19,18 +19,33 @@
 
             <div class="col-md-3 d-flex justify-content-end align-items-center gap-header">
 
-                <!-- Si el usuario está logueado mostramos su info -->
                 <ng-container *ngIf="authService.isLoggedIn()">
                     <div class="info-usuario">
                         <span class="nombre-usuario">{{ authService.getCurrentUser()?.nombre }}</span>
-                        <span class="exp-usuario">
-                            Nv.{{ authService.getCurrentUser()?.nivel }} · {{ authService.getCurrentUser()?.exp }} EXP
-                        </span>
+                        <span class="exp-usuario">Nv.{{ authService.getCurrentUser()?.nivel }} · {{ authService.getCurrentUser()?.exp }} EXP</span>
                     </div>
-                    <button class="btn-logout" (click)="logout()">Cerrar sesión</button>
+                    <div class="menu-usuario-contenedor">
+                        <button class="btn-avatar" (click)="toggleMenuUsuario()">
+                            <span class="avatar-letra">{{ authService.getCurrentUser()?.nombre?.charAt(0).toUpperCase() }}</span>
+                        </button>
+                        <div class="menu-usuario" *ngIf="menuUsuarioAbierto">
+                            <div class="menu-usuario-item" (click)="cerrarMenuUsuario()">
+                                <span>⚙️</span> Ajustes
+                            </div>
+                            <div class="menu-usuario-item" (click)="cerrarMenuUsuario()">
+                                <span>🏆</span> Clasificación
+                            </div>
+                            <div class="menu-usuario-item" (click)="cerrarMenuUsuario()">
+                                <span>👥</span> Amigos
+                            </div>
+                            <div class="menu-usuario-divider"></div>
+                            <div class="menu-usuario-item menu-cerrar-sesion" (click)="logout()">
+                                <span>🚪</span> Cerrar sesión
+                            </div>
+                        </div>
+                    </div>
                 </ng-container>
 
-                <!-- Si no está logueado mostramos el botón de perfil -->
                 <ng-container *ngIf="!authService.isLoggedIn()">
                     <a routerLink="/login" class="nav-link boton-nav boton-perfil">
                         <i class="bi bi-person"></i> Perfil
@@ -44,7 +59,6 @@
 
         </div>
 
-        <!-- Menú móvil -->
         <nav class="nav-movil" [class.abierto]="menuAbierto">
             <a routerLink="/biblioteca" class="nav-link boton-nav" (click)="menuAbierto=false">Biblioteca</a>
             <a routerLink="/descubrir" class="nav-link boton-nav" (click)="menuAbierto=false">Descubrir</a>

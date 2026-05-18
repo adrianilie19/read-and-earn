@@ -14,15 +14,25 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
 
   menuAbierto = false;
+  menuUsuarioAbierto = false;
 
   constructor(public authService: AuthService, private router: Router) {}
 
   logout() {
     this.authService.logout();
+    this.menuUsuarioAbierto = false;
     this.router.navigate(['/']);
   }
 
   toggleMenu() {
     this.menuAbierto = !this.menuAbierto;
+  }
+
+  toggleMenuUsuario() {
+    this.menuUsuarioAbierto = !this.menuUsuarioAbierto;
+  }
+
+  cerrarMenuUsuario() {
+    this.menuUsuarioAbierto = false;
   }
 }
