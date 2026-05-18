@@ -47,9 +47,12 @@
                     <div class="barra-progreso">
                         <div class="relleno-progreso" [style.width]="libro.progreso + '%'"></div>
                     </div>
-                    <button class="btn-accion" (click)="continuarLeyendo(libro)">
-                        {{ libro.progreso > 0 ? 'Continuar leyendo' : 'Comenzar' }}
-                    </button>
+                    <div class="botones-libro">
+                        <button class="btn-accion" (click)="continuarLeyendo(libro)">
+                            {{ libro.progreso > 0 ? 'Continuar leyendo' : 'Comenzar' }}
+                        </button>
+                        <button class="btn-eliminar" (click)="eliminarLibro(libro)">🗑</button>
+                    </div>
                 </div>
             </div>
         </div>

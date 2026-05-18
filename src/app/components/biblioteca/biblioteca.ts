@@ -84,4 +84,15 @@ export class Biblioteca implements OnInit {
   continuarLeyendo(libro: any) {
     console.log('Continuar leyendo:', libro.titulo);
   }
+  eliminarLibro(libro: any) {
+    this.api.eliminarLibro(libro.id).subscribe({
+      next: () => {
+        this.libros = this.libros.filter(l => l.id !== libro.id);
+        this.aplicarFiltros();
+      },
+      error: () => {
+        alert('Error al eliminar el libro');
+      }
+    });
+  }
 }

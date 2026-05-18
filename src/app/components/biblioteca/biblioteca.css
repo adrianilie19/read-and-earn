@@ -441,3 +441,30 @@ h1 {
 }
 
 .btn-descubrir:hover { background-color: #7a462e; }
+
+.botones-libro {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.botones-libro .btn-accion {
+    flex: 1;
+    margin-top: 0;
+}
+
+.btn-eliminar {
+    padding: 8px 12px;
+    background-color: #fff0f0;
+    color: #d32f2f;
+    border: 1.5px solid #ffcdd2;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex-shrink: 0;
+}
+
+.btn-eliminar:hover {
+    background-color: #ffcdd2;
+}
