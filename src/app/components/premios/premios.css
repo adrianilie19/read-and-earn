@@ -160,3 +160,49 @@
     color: #999;
     font-family: 'Inter', sans-serif;
 }
+
+.encabezado-premios {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.exp-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #fff8e1;
+    border: 1.5px solid #f9a825;
+    border-radius: 20px;
+    padding: 8px 18px;
+}
+
+.exp-badge-icono { font-size: 18px; }
+
+.exp-badge-texto {
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    color: #634731;
+}
+
+.exp-coste {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.exp-falta {
+    font-size: 11px;
+    color: #d32f2f;
+    font-family: 'Inter', sans-serif;
+}
+
+.exp-suficiente {
+    font-size: 11px;
+    color: #2e7d32;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+}

@@ -8,11 +8,11 @@
                 </p>
             </div>
             <input
-              type="text"
-              class="busqueda-libro"
-              placeholder="Buscar en tus libros..."
-              [(ngModel)]="terminoBusqueda"
-              (input)="filtrarLibros()"
+                    type="text"
+                    class="busqueda-libro"
+                    placeholder="Buscar en tus libros..."
+                    [(ngModel)]="terminoBusqueda"
+                    (input)="filtrarLibros()"
             >
         </div>
 
@@ -37,9 +37,9 @@
                     <p class="autor-libro">{{ libro.autor || 'Autor desconocido' }}</p>
                     <div class="estado-libro">
                         <span class="etiqueta-estado"
-                          [class.estado-por-comenzar]="libro.estado === 'Por comenzar'"
-                          [class.estado-en-progreso]="libro.estado === 'En progreso'"
-                          [class.estado-completado]="libro.estado === 'Completado'">
+                              [class.estado-por-comenzar]="libro.estado === 'Por comenzar'"
+                              [class.estado-en-progreso]="libro.estado === 'En progreso'"
+                              [class.estado-completado]="libro.estado === 'Completado'">
                             {{ libro.estado }}
                         </span>
                         <span class="porcentaje">{{ libro.progreso }}%</span>
@@ -48,8 +48,8 @@
                         <div class="relleno-progreso" [style.width]="libro.progreso + '%'"></div>
                     </div>
                     <div class="botones-libro">
-                        <button class="btn-accion" (click)="continuarLeyendo(libro)">
-                            {{ libro.progreso > 0 ? 'Continuar leyendo' : 'Comenzar' }}
+                        <button class="btn-accion" (click)="abrirProgreso(libro)">
+                            {{ libro.progreso > 0 ? 'Actualizar progreso' : 'Comenzar' }}
                         </button>
                         <button class="btn-eliminar" (click)="eliminarLibro(libro)">🗑</button>
                     </div>
@@ -66,6 +66,27 @@
 
         <div *ngIf="!cargando && libros.length > 0 && librosFiltrados.length === 0" class="sin-libros">
             <p>No se encontraron libros con ese término.</p>
+        </div>
+    </div>
+</div>
+
+<div class="popup-overlay" *ngIf="libroEditando" (click)="cerrarProgreso()">
+    <div class="popup-progreso" (click)="$event.stopPropagation()">
+        <button class="popup-cerrar" (click)="cerrarProgreso()">✕</button>
+        <h2 class="popup-titulo">Actualizar progreso</h2>
+        <p class="popup-libro">{{ libroEditando.titulo }}</p>
+        <div class="popup-slider-contenedor">
+            <input type="range" min="0" max="100" [(ngModel)]="progresoTemporal" class="popup-slider">
+            <span class="popup-valor">{{ progresoTemporal }}%</span>
+        </div>
+        <div class="popup-estados-preview">
+            <span *ngIf="progresoTemporal === 0">Por comenzar</span>
+            <span *ngIf="progresoTemporal > 0 && progresoTemporal < 100">En progreso</span>
+            <span *ngIf="progresoTemporal === 100">✓ Completado</span>
+        </div>
+        <div class="popup-botones">
+            <button class="popup-btn-cancelar" (click)="cerrarProgreso()">Cancelar</button>
+            <button class="popup-btn-guardar" (click)="guardarProgreso()">Guardar</button>
         </div>
     </div>
 </div>

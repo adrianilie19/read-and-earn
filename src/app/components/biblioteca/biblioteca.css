@@ -468,3 +468,117 @@ h1 {
 .btn-eliminar:hover {
     background-color: #ffcdd2;
 }
+
+.popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.popup-progreso {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 36px;
+    max-width: 380px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.popup-cerrar {
+    position: absolute;
+    top: 14px; right: 16px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #999;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.popup-cerrar:hover { background-color: #f0f0f0; }
+
+.popup-titulo {
+    font-size: 20px;
+    font-family: 'DMSerifText', serif;
+    color: #333333;
+    margin: 0 0 6px 0;
+}
+
+.popup-libro {
+    font-size: 13px;
+    color: #999;
+    font-family: 'Inter', sans-serif;
+    margin: 0 0 24px 0;
+}
+
+.popup-slider-contenedor {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.popup-slider {
+    flex: 1;
+    height: 6px;
+    accent-color: #634731;
+    cursor: pointer;
+}
+
+.popup-valor {
+    font-size: 20px;
+    font-weight: 700;
+    color: #634731;
+    font-family: 'Inter', sans-serif;
+    min-width: 48px;
+}
+
+.popup-estados-preview {
+    font-size: 13px;
+    color: #999;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 24px;
+    min-height: 20px;
+}
+
+.popup-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.popup-btn-cancelar {
+    flex: 1;
+    padding: 10px;
+    background-color: #f5f5f5;
+    color: #666;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+}
+
+.popup-btn-cancelar:hover { background-color: #e0e0e0; }
+
+.popup-btn-guardar {
+    flex: 1;
+    padding: 10px;
+    background-color: #634731;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.popup-btn-guardar:hover { background-color: #7a462e; }

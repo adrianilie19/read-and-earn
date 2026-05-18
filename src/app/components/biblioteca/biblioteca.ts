@@ -19,6 +19,8 @@ export class Biblioteca implements OnInit {
   filtroEstado = 'todos';
   cargando = true;
   error = '';
+  libroEditando: any = null;
+  progresoTemporal = 0;
 
   constructor(private api: ApiService) {}
 
@@ -29,7 +31,6 @@ export class Biblioteca implements OnInit {
   cargarBiblioteca() {
     this.cargando = true;
     this.error = '';
-
     this.api.getBiblioteca().subscribe({
       next: (res: any) => {
         this.libros = res.data;
@@ -74,16 +75,37 @@ export class Biblioteca implements OnInit {
     if (this.terminoBusqueda.trim() !== '') {
       const termino = this.terminoBusqueda.toLowerCase();
       resultado = resultado.filter(l =>
-        l.titulo.toLowerCase().includes(termino) ||
-        l.autor.toLowerCase().includes(termino)
+          l.titulo.toLowerCase().includes(termino) ||
+          l.autor.toLowerCase().includes(termino)
       );
     }
     this.librosFiltrados = resultado;
   }
 
-  continuarLeyendo(libro: any) {
-    console.log('Continuar leyendo:', libro.titulo);
+  abrirProgreso(libro: any) {
+    this.libroEditando = libro;
+    this.progresoTemporal = libro.progreso;
   }
+
+  cerrarProgreso() {
+    this.libroEditando = null;
+  }
+
+  guardarProgreso() {
+    if (!this.libroEditando) return;
+    this.api.actualizarProgreso(this.libroEditando.id, this.progresoTemporal).subscribe({
+      next: (res: any) => {
+        this.libroEditando.progreso = res.progreso;
+        this.libroEditando.estado = res.estado;
+        this.aplicarFiltros();
+        this.cerrarProgreso();
+      },
+      error: () => {
+        alert('Error al actualizar el progreso');
+      }
+    });
+  }
+
   eliminarLibro(libro: any) {
     this.api.eliminarLibro(libro.id).subscribe({
       next: () => {

@@ -1,40 +1,45 @@
 <div class="body">
-<div class="contenedor-premios">
-    <div class="encabezado-premios">
-        <h1><strong>Premios</strong></h1>
-        <p class="subtitulo-premios">Canjea tu experiencia por libros físicos</p>
-        <p class="exp-disponible" *ngIf="getExpUsuario() > 0">
-            Tienes <strong>{{ getExpUsuario() }} EXP</strong> disponibles
-        </p>
-    </div>
-
-    <div *ngIf="cargando" class="cargando"><p>Cargando premios...</p></div>
-    <div *ngIf="mensajeExito" class="alerta alerta-exito">{{ mensajeExito }}</div>
-    <div *ngIf="mensajeError" class="alerta alerta-error">{{ mensajeError }}</div>
-
-    <div class="grid-premios" *ngIf="!cargando">
-        <div class="tarjeta-premio" [class.no-disponible]="!premio.disponible" *ngFor="let premio of premios">
-            <div class="imagen-premio">
-                <img
-                  [src]="premio.portada_url"
-                  [alt]="premio.titulo"
-                  class="portada-premio"
-                  (error)="$any($event.target).style.display='none'"
-                >
+    <div class="contenedor-premios">
+        <div class="encabezado-premios">
+            <div>
+                <h1><strong>Premios</strong></h1>
+                <p class="subtitulo-premios">Canjea tu experiencia por libros físicos</p>
             </div>
-            <div class="info-premio">
-                <h3>{{ premio.titulo }}</h3>
-                <p class="autor-premio">{{ premio.autor }}</p>
-                <div class="exp-premio">{{ premio.coste_exp | number }} EXP</div>
-                <button
-                  class="btn-canjear"
-                  [disabled]="!premio.disponible"
-                  (click)="canjearPremio(premio)"
-                >
-                    {{ premio.disponible ? 'Canjear' : 'Sin stock' }}
-                </button>
+            <div class="exp-badge" *ngIf="getExpUsuario() > 0">
+                <span class="exp-badge-icono">⭐</span>
+                <span class="exp-badge-texto">{{ getExpUsuario() }} EXP disponibles</span>
+            </div>
+        </div>
+
+        <div *ngIf="cargando" class="cargando"><p>Cargando premios...</p></div>
+        <div *ngIf="mensajeExito" class="alerta alerta-exito">{{ mensajeExito }}</div>
+        <div *ngIf="mensajeError" class="alerta alerta-error">{{ mensajeError }}</div>
+
+        <div class="grid-premios" *ngIf="!cargando">
+            <div class="tarjeta-premio" [class.no-disponible]="!premio.disponible" *ngFor="let premio of premios">
+                <div class="imagen-premio">
+                    <img [src]="premio.portada_url" [alt]="premio.titulo" class="portada-premio"
+                         (error)="$any($event.target).style.display='none'">
+                </div>
+                <div class="info-premio">
+                    <h3>{{ premio.titulo }}</h3>
+                    <p class="autor-premio">{{ premio.autor }}</p>
+                    <div class="exp-coste">
+                        <span class="exp-premio">{{ premio.coste_exp | number }} EXP</span>
+                        <span class="exp-falta" *ngIf="getExpUsuario() < premio.coste_exp && premio.disponible">
+                        Te faltan {{ premio.coste_exp - getExpUsuario() }} EXP
+                    </span>
+                        <span class="exp-suficiente" *ngIf="getExpUsuario() >= premio.coste_exp && premio.disponible">
+                        ✓ Puedes canjearlo
+                    </span>
+                    </div>
+                    <button class="btn-canjear"
+                            [disabled]="!premio.disponible || getExpUsuario() < premio.coste_exp"
+                            (click)="canjearPremio(premio)">
+                        {{ !premio.disponible ? 'Sin stock' : getExpUsuario() < premio.coste_exp ? 'EXP insuficiente' : 'Canjear' }}
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div>
