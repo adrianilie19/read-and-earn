@@ -26,8 +26,7 @@
                     </div>
                     <div class="menu-usuario-contenedor">
                         <button class="btn-avatar" (click)="toggleMenuUsuario()">
-                            <span class="avatar-letra">{{ authService.getCurrentUser()?.nombre?.charAt(0).toUpperCase() }}</span>
-                        </button>
+                            <span class="avatar-letra">{{ (authService.getCurrentUser()?.nombre || '?')[0].toUpperCase() }}</span>                        </button>
                         <div class="menu-usuario" *ngIf="menuUsuarioAbierto">
                             <div class="menu-usuario-item" (click)="cerrarMenuUsuario()">
                                 <span>⚙️</span> Ajustes
