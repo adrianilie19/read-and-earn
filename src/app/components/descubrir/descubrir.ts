@@ -31,8 +31,18 @@ export class DescubrirComponent implements OnInit {
   ngOnInit() {
     this.cargarLibros();
 
-    const bib = JSON.parse(localStorage.getItem('biblioteca') || '[]');
-    this.idsAgregados = bib.map((l: any) => l.id || l.gutendex_id);
+    if (this.authService.isLoggedIn()) {
+      this.api.getBiblioteca().subscribe({
+        next: (res: any) => {
+          this.idsAgregados = res.data.map((l: any) => l.gutendex_id);
+        },
+        error: () => {
+          this.idsAgregados = [];
+        }
+      });
+    } else {
+      this.idsAgregados = [];
+    }
   }
 
   cargarIdsYLuegoPagina() {
