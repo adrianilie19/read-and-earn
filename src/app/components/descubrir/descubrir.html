@@ -3,19 +3,19 @@
 
         <div class="encabezado-descubrir">
             <h1><strong>Descubrir</strong></h1>
-            <div class="buscador-contenedor">
-                <input
-                  type="text"
-                  class="busqueda-libro"
-                  placeholder="Buscar libros..."
-                  [(ngModel)]="terminoBusqueda"
-                  (keyup.enter)="buscar()"
-                >
-                <button class="btn-buscar" (click)="buscar()">Buscar</button>
-            </div>
+            <input
+                    type="text"
+                    class="busqueda-libro"
+                    placeholder="Buscar libros..."
+                    [(ngModel)]="terminoBusqueda"
+                    (keyup.enter)="buscar()"
+            >
         </div>
 
-        <!-- Pantalla de carga más visual -->
+        <div *ngIf="mensajeLogro" class="notificacion-logro">
+            {{ mensajeLogro }}
+        </div>
+
         <div *ngIf="cargando" class="cargando">
             <div class="spinner"></div>
             <p>Cargando libros...</p>
@@ -27,13 +27,12 @@
         <div class="grid-libros" *ngIf="!cargando && libros.length > 0">
             <div class="tarjeta-libro" *ngFor="let libro of libros">
                 <div class="imagen-libro">
-                    <!-- loading="lazy" hace que las imágenes carguen solo cuando son visibles -->
                     <img
-                      *ngIf="libro.cover_image"
-                      [src]="libro.cover_image"
-                      [alt]="libro.title"
-                      class="portada-libro"
-                      loading="lazy"
+                            *ngIf="libro.cover_image"
+                            [src]="libro.cover_image"
+                            [alt]="libro.title"
+                            class="portada-libro"
+                            loading="lazy"
                     >
                     <div *ngIf="!libro.cover_image" class="sin-imagen">📖</div>
                 </div>
@@ -44,10 +43,10 @@
                         {{ libro.download_count | number }} descargas
                     </p>
                     <button
-                        class="btn-accion"
-                        [class.btn-agregado]="yaAgregado(libro)"
-                        [disabled]="yaAgregado(libro)"
-                        (click)="agregarABiblioteca(libro)"
+                            class="btn-accion"
+                            [class.btn-agregado]="yaAgregado(libro)"
+                            [disabled]="yaAgregado(libro)"
+                            (click)="agregarABiblioteca(libro)"
                     >
                         {{ yaAgregado(libro) ? '✓ Agregado' : '+ Agregar' }}
                     </button>

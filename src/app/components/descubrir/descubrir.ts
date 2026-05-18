@@ -1,4 +1,4 @@
-  import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LibrosService, Libro } from '../../core/service/LibrosService/libros-services.service';
@@ -21,11 +21,12 @@ export class DescubrirComponent implements OnInit {
   paginaActual = 1;
   idsAgregados: number[] = [];
   cache: { [pagina: number]: Libro[] } = {};
+  mensajeLogro = '';
 
   constructor(
-    private librosService: LibrosService,
-    private api: ApiService,
-    private authService: AuthService
+      private librosService: LibrosService,
+      private api: ApiService,
+      private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -42,26 +43,6 @@ export class DescubrirComponent implements OnInit {
       });
     } else {
       this.idsAgregados = [];
-    }
-  }
-
-  cargarIdsYLuegoPagina() {
-    if (this.authService.isLoggedIn()) {
-      this.api.getBiblioteca().subscribe({
-        next: (res: any) => {
-          this.idsAgregados = res.data.map((l: any) => l.gutendex_id);
-          this.cargarLibros();
-        },
-        error: () => {
-          const bib = JSON.parse(localStorage.getItem('biblioteca') || '[]');
-          this.idsAgregados = bib.map((l: any) => l.id || l.gutendex_id);
-          this.cargarLibros();
-        }
-      });
-    } else {
-      const bib = JSON.parse(localStorage.getItem('biblioteca') || '[]');
-      this.idsAgregados = bib.map((l: any) => l.id || l.gutendex_id);
-      this.cargarLibros();
     }
   }
 
@@ -117,8 +98,20 @@ export class DescubrirComponent implements OnInit {
 
     if (this.authService.isLoggedIn()) {
       this.api.agregarLibro(libro.id, libro.title, autor, portada).subscribe({
-        next: () => {
+        next: (res: any) => {
           this.idsAgregados.push(libro.id);
+
+          if (res.logros_desbloqueados && res.logros_desbloqueados.length > 0) {
+            this.mensajeLogro = '🏆 ¡Logro desbloqueado: ' + res.logros_desbloqueados.join(', ') + '! +EXP';
+            setTimeout(() => this.mensajeLogro = '', 4000);
+
+            const user = this.authService.getCurrentUser();
+            if (user && res.exp !== undefined) {
+              user.exp = res.exp;
+              user.nivel = res.nivel;
+              this.authService.actualizarUsuario(user);
+            }
+          }
         },
         error: (err: any) => {
           if (err.status === 0) {
