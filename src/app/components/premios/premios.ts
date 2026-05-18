@@ -42,6 +42,14 @@ export class Premios implements OnInit {
         this.cargando = false;
       }
     });
+
+    setTimeout(() => {
+      if (this.cargando) {
+        this.premios = PREMIOS_LOCAL;
+        this.backendActivo = false;
+        this.cargando = false;
+      }
+    }, 5000);
   }
 
   canjearPremio(premio: any) {
