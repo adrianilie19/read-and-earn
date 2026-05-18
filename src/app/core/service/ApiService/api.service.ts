@@ -5,7 +5,7 @@ import { AuthService } from '../auth.service';
 @Injectable({ providedIn: 'root' })
 export class ApiService {
 
-  private url = 'http://127.0.0.1:8000/api';
+  private url = 'https://read-and-earn-backend.onrender.com/api';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
