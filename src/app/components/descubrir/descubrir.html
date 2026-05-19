@@ -8,6 +8,7 @@
                     class="busqueda-libro"
                     placeholder="Buscar libros..."
                     [(ngModel)]="terminoBusqueda"
+                    (input)="buscarEnTiempoReal()"
                     (keyup.enter)="buscar()"
             >
         </div>

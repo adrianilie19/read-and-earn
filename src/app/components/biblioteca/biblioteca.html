@@ -21,9 +21,9 @@
 
         <div class="pestanas-estado" *ngIf="!cargando && libros.length > 0">
             <button class="pestana" [class.activa]="filtroEstado === 'todos'" (click)="setFiltroEstado('todos')">Todos ({{ libros.length }})</button>
-            <button class="pestana" [class.activa]="filtroEstado === 'Por comenzar'" (click)="setFiltroEstado('Por comenzar')">Por comenzar</button>
-            <button class="pestana" [class.activa]="filtroEstado === 'En progreso'" (click)="setFiltroEstado('En progreso')">En progreso</button>
-            <button class="pestana" [class.activa]="filtroEstado === 'Completado'" (click)="setFiltroEstado('Completado')">Completados</button>
+            <button class="pestana" [class.activa]="filtroEstado === 'Por comenzar'" (click)="setFiltroEstado('Por comenzar')">Por comenzar ({{ porComenzar }})</button>
+            <button class="pestana" [class.activa]="filtroEstado === 'En progreso'" (click)="setFiltroEstado('En progreso')">En progreso ({{ enProgreso }})</button>
+            <button class="pestana" [class.activa]="filtroEstado === 'Completado'" (click)="setFiltroEstado('Completado')">Completados ({{ completados }})</button>
         </div>
 
         <div class="grid-libros" *ngIf="!cargando && librosFiltrados.length > 0">

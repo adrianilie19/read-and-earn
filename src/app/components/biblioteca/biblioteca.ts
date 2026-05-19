@@ -117,4 +117,9 @@ export class Biblioteca implements OnInit {
       }
     });
   }
+
+  get porComenzar() { return this.libros.filter(l => l.estado === 'Por comenzar').length; }
+  get enProgreso() { return this.libros.filter(l => l.estado === 'En progreso').length; }
+  get completados() { return this.libros.filter(l => l.estado === 'Completado').length; }
+
 }

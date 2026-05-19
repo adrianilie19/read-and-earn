@@ -69,6 +69,20 @@ export class DescubrirComponent implements OnInit {
     });
   }
 
+  buscarEnTiempoReal() {
+    if (!this.terminoBusqueda.trim()) {
+      this.paginaActual = 1;
+      this.cargarLibros();
+      return;
+    }
+    this.cargando = true;
+    this.error = '';
+    this.librosService.buscarLibros(this.terminoBusqueda).subscribe({
+      next: (data) => { this.libros = data; this.cargando = false; },
+      error: () => { this.error = 'Error al buscar libros.'; this.cargando = false; }
+    });
+  }
+
   buscar() {
     if (!this.terminoBusqueda.trim()) {
       this.paginaActual = 1;
