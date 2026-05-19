@@ -15,6 +15,6 @@ export const routes: Routes = [
     { path: 'biblioteca', component: Biblioteca },
     { path: 'logros', component: Logros, canActivate: [authGuard] },
     { path: 'premios', component: Premios },
-    { path: '**', redirectTo: ''},
     { path: 'configuracion', component: Configuracion },
+    { path: '**', redirectTo: ''},
 ];
