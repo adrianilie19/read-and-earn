@@ -1,0 +1,181 @@
+<div class="body">
+    <div class="contenedor-configuracion">
+
+        <h1>Configuración</h1>
+
+        <div class="config-layout">
+
+            <!-- Menú lateral -->
+            <div class="config-menu">
+                <div class="config-menu-item" [class.activo]="seccionActiva === 'perfil'" (click)="setSeccion('perfil')">
+                    <span>👤</span> Perfil
+                </div>
+                <div class="config-menu-item" [class.activo]="seccionActiva === 'notificaciones'" (click)="setSeccion('notificaciones')">
+                    <span>🔔</span> Notificaciones
+                </div>
+                <div class="config-menu-item" [class.activo]="seccionActiva === 'privacidad'" (click)="setSeccion('privacidad')">
+                    <span>🔒</span> Privacidad
+                </div>
+                <div class="config-menu-item" [class.activo]="seccionActiva === 'mensajes'" (click)="setSeccion('mensajes')">
+                    <span>💬</span> Mensajes
+                </div>
+                <div class="config-menu-item" [class.activo]="seccionActiva === 'apariencia'" (click)="setSeccion('apariencia')">
+                    <span>🎨</span> Apariencia
+                </div>
+                <div class="config-menu-item" [class.activo]="seccionActiva === 'cuenta'" (click)="setSeccion('cuenta')">
+                    <span>⚙️</span> Cuenta
+                </div>
+            </div>
+
+            <!-- Contenido -->
+            <div class="config-contenido">
+
+                <!-- Perfil -->
+                <div *ngIf="seccionActiva === 'perfil'">
+                    <h2>Perfil</h2>
+                    <p class="config-descripcion">Gestiona la información de tu perfil público.</p>
+                    <div class="config-grupo">
+                        <label>Nombre de usuario</label>
+                        <input type="text" placeholder="Tu nombre" class="config-input">
+                    </div>
+                    <div class="config-grupo">
+                        <label>Email</label>
+                        <input type="email" placeholder="tu@email.com" class="config-input">
+                    </div>
+                    <div class="config-grupo">
+                        <label>Nueva contraseña</label>
+                        <input type="password" placeholder="••••••••" class="config-input">
+                    </div>
+                    <button class="config-btn-guardar">Guardar cambios</button>
+                </div>
+
+                <!-- Notificaciones -->
+                <div *ngIf="seccionActiva === 'notificaciones'">
+                    <h2>Notificaciones</h2>
+                    <p class="config-descripcion">Elige qué notificaciones quieres recibir.</p>
+                    <div class="config-toggle-item">
+                        <div class="config-toggle-info">
+                            <span class="config-toggle-titulo">Notificaciones por email</span>
+                            <span class="config-toggle-desc">Recibe un resumen semanal de tu actividad</span>
+                        </div>
+                        <div class="config-toggle" [class.activo]="notificacionesEmail" (click)="notificacionesEmail = !notificacionesEmail">
+                            <div class="config-toggle-circulo"></div>
+                        </div>
+                    </div>
+                    <div class="config-toggle-item">
+                        <div class="config-toggle-info">
+                            <span class="config-toggle-titulo">Logros desbloqueados</span>
+                            <span class="config-toggle-desc">Aviso cuando desbloqueas un nuevo logro</span>
+                        </div>
+                        <div class="config-toggle" [class.activo]="notificacionesLogros" (click)="notificacionesLogros = !notificacionesLogros">
+                            <div class="config-toggle-circulo"></div>
+                        </div>
+                    </div>
+                    <div class="config-toggle-item">
+                        <div class="config-toggle-info">
+                            <span class="config-toggle-titulo">Actividad de amigos</span>
+                            <span class="config-toggle-desc">Cuando un amigo te supera en el ranking</span>
+                        </div>
+                        <div class="config-toggle" [class.activo]="notificacionesAmigos" (click)="notificacionesAmigos = !notificacionesAmigos">
+                            <div class="config-toggle-circulo"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Privacidad -->
+                <div *ngIf="seccionActiva === 'privacidad'">
+                    <h2>Privacidad</h2>
+                    <p class="config-descripcion">Controla quién puede ver tu información.</p>
+                    <div class="config-toggle-item">
+                        <div class="config-toggle-info">
+                            <span class="config-toggle-titulo">Perfil público</span>
+                            <span class="config-toggle-desc">Otros usuarios pueden ver tu perfil</span>
+                        </div>
+                        <div class="config-toggle" [class.activo]="perfilPublico" (click)="perfilPublico = !perfilPublico">
+                            <div class="config-toggle-circulo"></div>
+                        </div>
+                    </div>
+                    <div class="config-toggle-item">
+                        <div class="config-toggle-info">
+                            <span class="config-toggle-titulo">Mostrar EXP y nivel</span>
+                            <span class="config-toggle-desc">Visible en tu perfil público</span>
+                        </div>
+                        <div class="config-toggle" [class.activo]="mostrarEXP" (click)="mostrarEXP = !mostrarEXP">
+                            <div class="config-toggle-circulo"></div>
+                        </div>
+                    </div>
+                    <div class="config-toggle-item">
+                        <div class="config-toggle-info">
+                            <span class="config-toggle-titulo">Mostrar biblioteca</span>
+                            <span class="config-toggle-desc">Otros pueden ver qué libros tienes</span>
+                        </div>
+                        <div class="config-toggle" [class.activo]="mostrarBiblioteca" (click)="mostrarBiblioteca = !mostrarBiblioteca">
+                            <div class="config-toggle-circulo"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensajes -->
+                <div *ngIf="seccionActiva === 'mensajes'">
+                    <h2>Mensajes</h2>
+                    <p class="config-descripcion">Configura tus preferencias de mensajería.</p>
+                    <div class="config-opcion-grupo">
+                        <p class="config-opcion-titulo">¿Quién puede enviarte mensajes?</p>
+                        <div class="config-radio-item">
+                            <input type="radio" name="mensajes" id="todos" checked>
+                            <label for="todos">Todos los usuarios</label>
+                        </div>
+                        <div class="config-radio-item">
+                            <input type="radio" name="mensajes" id="amigos">
+                            <label for="amigos">Solo amigos</label>
+                        </div>
+                        <div class="config-radio-item">
+                            <input type="radio" name="mensajes" id="nadie">
+                            <label for="nadie">Nadie</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Apariencia -->
+                <div *ngIf="seccionActiva === 'apariencia'">
+                    <h2>Apariencia</h2>
+                    <p class="config-descripcion">Personaliza el aspecto de la aplicación.</p>
+                    <div class="config-opcion-grupo">
+                        <p class="config-opcion-titulo">Tema</p>
+                        <div class="config-temas">
+                            <div class="config-tema activo">
+                                <div class="config-tema-preview tema-claro"></div>
+                                <span>Claro</span>
+                            </div>
+                            <div class="config-tema">
+                                <div class="config-tema-preview tema-oscuro"></div>
+                                <span>Oscuro</span>
+                            </div>
+                            <div class="config-tema">
+                                <div class="config-tema-preview tema-sistema"></div>
+                                <span>Sistema</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cuenta -->
+                <div *ngIf="seccionActiva === 'cuenta'">
+                    <h2>Cuenta</h2>
+                    <p class="config-descripcion">Gestiona tu cuenta y datos personales.</p>
+                    <div class="config-grupo">
+                        <p class="config-opcion-titulo">Exportar datos</p>
+                        <p class="config-toggle-desc">Descarga una copia de todos tus datos</p>
+                        <button class="config-btn-secundario">Exportar datos</button>
+                    </div>
+                    <div class="config-grupo config-zona-peligro">
+                        <p class="config-opcion-titulo">Zona de peligro</p>
+                        <p class="config-toggle-desc">Esta acción no se puede deshacer</p>
+                        <button class="config-btn-eliminar">Eliminar cuenta</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

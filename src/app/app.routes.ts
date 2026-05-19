@@ -6,6 +6,7 @@ import { Biblioteca } from './components/biblioteca/biblioteca';
 import { Logros } from './components/logros/logros';
 import { Premios } from './components/premios/premios';
 import { authGuard } from './core/guards/auth.guard';
+import { Configuracion } from './components/configuracion/configuracion';
 
 export const routes: Routes = [
     { path: '', component: Inicio },
@@ -14,5 +15,6 @@ export const routes: Routes = [
     { path: 'biblioteca', component: Biblioteca },
     { path: 'logros', component: Logros, canActivate: [authGuard] },
     { path: 'premios', component: Premios },
-    { path: '**', redirectTo: '' }
+    { path: '**', redirectTo: ''},
+    { path: 'configuracion', component: Configuracion },
 ];
